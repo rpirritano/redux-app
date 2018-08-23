@@ -1,0 +1,28 @@
+{
+	"allExerciseDays": [
+		{
+			"routine": "P90x",
+			"date": "2018-08-20",
+			"weights": true,
+			"cardio": false
+		},
+		{
+      "routine": "Insanity",
+			"date": "2018-08-21",
+			"weights": false,
+			"cardio": true
+		},
+		{
+      "routine": "P90x",
+			"date": "2018-08-22",
+			"weights": true,
+			"cardio": false
+		}
+	],
+	"goal": 10,
+	"errors": [],
+	"exerciseNames": {
+		"fetching": false,
+		"suggestions": ["Cardio Power", "Cardio Recovery", "Cardio Abs", "Core Cardio"]
+	}
+}
