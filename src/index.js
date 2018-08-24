@@ -1,24 +1,45 @@
 import C from './constants'
-import appReducer from './store/reducers'
-import { createStore } from 'redux'
+import storeFactory from './store'
 
-const store = createStore(appReducer)
+const initialState = (localStorage['redux-store']) ?
+	JSON.parse(localStorage['redux-store']) :
+	{}
 
-const unsubscribeGoalLogger = store.subscribe(
-	() => console.log(`   Goal: ${store.getState().goal}`)
-)
+const saveState = () => {
+	const state = JSON.stringify(store.getState())
+  localStorage['redux-store'] = state
+}
 
-setInterval(() => {
+const store = storeFactory(initialState)
 
-	store.dispatch({
-		type: C.SET_GOAL,
-		payload: Math.floor(Math.random() * 100)
-	})
+store.subscribe(saveState)
 
-}, 250)
+store.dispatch({
+	type: C.ADD_DAY,
+	payload: {
+		"routine": "Insanity",
+		"date": "2018-08-21",
+		"weights": false,
+		"cardio": true
+	}
+})
 
-setTimeout(() => {
+store.dispatch({
+	type: C.ADD_DAY,
+	payload: {
+		"routine": "P90X",
+		"date": "2018-08-22",
+		"weights": true,
+		"cardio": false
+	}
+})
 
-	unsubscribeGoalLogger();
-
-}, 3000)
+store.dispatch({
+	type: C.ADD_DAY,
+	payload: {
+		"routine": "P90X",
+		"date": "2018-08-23",
+		"weights": true,
+		"cardio": false
+	}
+})
