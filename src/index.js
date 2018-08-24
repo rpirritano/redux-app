@@ -1,19 +1,17 @@
 import C from './constants'
-import { exerciseDay } from './store/reducers'
+import { errors } from './store/reducers'
 
-const state = null
+const state = [
+	"user not authorized",
+	"server feed not found"
+]
 
 const action = {
-	type: C.ADD_DAY,
-	payload: {
-		"routine": "Insanity",
-		"date": "2018-08-23",
-		"weights": false,
-		"cardio": true
-	}
+	type: C.CLEAR_ERROR,
+	payload: 0 //REMOVE the index of the error, in this case index 0
 }
 //new state value
-const nextState = exerciseDay(state, action)
+const nextState = errors(state, action)
 //action is a json object so must stringify it
 console.log(`
 
