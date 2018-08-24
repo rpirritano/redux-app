@@ -1,3 +1,30 @@
+import C from './constants'
+import { exerciseDay } from './store/reducers'
+
+const state = null
+
+const action = {
+	type: C.ADD_DAY,
+	payload: {
+		"routine": "Insanity",
+		"date": "2018-08-23",
+		"weights": false,
+		"cardio": true
+	}
+}
+//new state value
+const nextState = exerciseDay(state, action)
+//action is a json object so must stringify it
+console.log(`
+
+	initial state: ${state}
+	action: ${JSON.stringify(action)}
+	new state: ${JSON.stringify(nextState)}
+
+`)
+
+
+
 /*  First steps to check babel.node
 
 import C from './constants'
@@ -27,7 +54,8 @@ console.log(`
 `)
 */
 
-
+/*
+// SECOND: --------------------------------------------------------------------
 //reducers are pure functions that are designed to manage specific parts of the state object.
 //initialState.json file is a snapshot of what State could look like at any particular time in the application.
 //need to create a reducer to manage every key in this file,
@@ -57,3 +85,4 @@ console.log(`
 	new goal: ${nextState}
 
 `)
+*/
