@@ -1,3 +1,6 @@
+//after installing redux, can use the combine function to combine the below reducers
+import { combineReducers } from 'redux'
+
 import C from '../constants'
 
 //if action is equal to the new goal, then return the new action
@@ -95,3 +98,31 @@ export const suggestions = (state=[], action) => {
 			return state
 	}
 }
+/*
+//need to combine the children reducers of exerciseNames to use in the singleReducer
+const exerciseNames = combineReducers({
+  fetching,
+  suggestions
+})
+
+//combined so shape of reducer equals shape of the expected state (initialState)
+const singleReducer = combineReducers({
+  allExerciseDays,
+  goal,
+  errors,
+  exerciseNames
+})
+
+export default singleReducer
+*/
+
+//to make code more concise combine below
+export default combineReducers({
+  allExerciseDays,
+  goal,
+  errors,
+  exerciseNames: combineReducers({
+    fetching,
+    suggestions
+  })
+})

@@ -8,7 +8,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "babel-preset-latest": "^6.24.1"
+    "babel-preset-latest": "^6.24.1",
+    "redux": "^4.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

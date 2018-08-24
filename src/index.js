@@ -1,35 +1,52 @@
 import C from './constants'
-import { allExerciseDays } from './store/reducers'
+import appReducer from './store/reducers'
+import initialState from './initialState.json'
 
-const state = [
-	{
-		"routine": "P90X Cardio",
-		"date": "2018-08-19",
-		"weights": false,
-		"cardio": true
-	},
-	{
-		"routine": "Insanity",
-		"date": "2018-08-23",
-		"weights": false,
-		"cardio": true
-	}
-]
+let state = initialState //use let for this since we will mutate state for the example
 
-const action = {
-	type: C.REMOVE_DAY,
-	payload: "2018-08-19" //date want to remove
-}
-//new state value
-const nextState = allExerciseDays(state, action)
-//action is a json object so must stringify it
 console.log(`
+	Inital state
+	==============
+	goal: ${state.goal}
+	routine: ${JSON.stringify(state.allExerciseDays)}
+	fetching: ${state.exerciseNames.fetching}
+	suggestions: ${state.exerciseNames.suggestions}
+`
 
-	initial state: ${JSON.stringify(state)}
-	action: ${JSON.stringify(action)}
-	new state: ${JSON.stringify(nextState)}
+)
 
-`)
+state = appReducer(state, { //action is the object
+	type: C.SET_GOAL,
+	payload: 2
+})
+
+state = appReducer(state, {
+	type: C.ADD_DAY,
+	payload: {
+		"routine": "P90x",
+		"date": "2018-09-01",
+		"weights": true,
+		"cardio": false
+	}
+})
+
+state = appReducer(state, {
+	type: C.CHANGE_SUGGESTIONS,
+	payload: ["P90x Abs", "P90x Cardio", "P90x YogaX"]
+})
+
+console.log(`
+	Next state
+	==============
+	goal: ${state.goal}
+	routine: ${JSON.stringify(state.allExerciseDays)}
+	fetching: ${state.exerciseNames.fetching}
+	suggestions: ${state.exerciseNames.suggestions}
+`
+
+)
+
+
 
 
 
@@ -93,4 +110,43 @@ console.log(`
 	new goal: ${nextState}
 
 `)
+*/
+
+/*
+
+----------------  Last part - replave the import for each reducer, as well as the
+												state and action below to test - see previous commits
+import C from './constants'
+import { allExerciseDays } from './store/reducers'
+
+const state = [
+	{
+		"routine": "P90X Cardio",
+		"date": "2018-08-19",
+		"weights": false,
+		"cardio": true
+	},
+	{
+		"routine": "Insanity",
+		"date": "2018-08-23",
+		"weights": false,
+		"cardio": true
+	}
+]
+
+const action = {
+	type: C.REMOVE_DAY,
+	payload: "2018-08-19" //date want to remove
+}
+//new state value
+const nextState = allExerciseDays(state, action)
+//action is a json object so must stringify it
+console.log(`
+
+	initial state: ${JSON.stringify(state)}
+	action: ${JSON.stringify(action)}
+	new state: ${JSON.stringify(nextState)}
+
+`)
+
 */
