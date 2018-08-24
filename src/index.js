@@ -1,21 +1,31 @@
 import C from './constants'
-import { errors } from './store/reducers'
+import { allExerciseDays } from './store/reducers'
 
 const state = [
-	"user not authorized",
-	"server feed not found"
+	{
+		"routine": "P90X Cardio",
+		"date": "2018-08-19",
+		"weights": false,
+		"cardio": true
+	},
+	{
+		"routine": "Insanity",
+		"date": "2018-08-23",
+		"weights": false,
+		"cardio": true
+	}
 ]
 
 const action = {
-	type: C.CLEAR_ERROR,
-	payload: 0 //REMOVE the index of the error, in this case index 0
+	type: C.REMOVE_DAY,
+	payload: "2018-08-19" //date want to remove
 }
 //new state value
-const nextState = errors(state, action)
+const nextState = allExerciseDays(state, action)
 //action is a json object so must stringify it
 console.log(`
 
-	initial state: ${state}
+	initial state: ${JSON.stringify(state)}
 	action: ${JSON.stringify(action)}
 	new state: ${JSON.stringify(nextState)}
 

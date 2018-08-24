@@ -35,3 +35,28 @@ export const errors = (state=[], action) => {
     return state
   }
 }
+
+export const allExerciseDays = (state=[], action) => {
+
+  switch(action.type) {
+
+    case C.ADD_DAY :
+
+      const hasDay = state.some(exerciseDay => exerciseDay.date === action.payload.date)
+//some checks if some duplicates already exist
+      return (hasDay) ? //so duplicates wont be added, if true, just not add the item to state and return original state
+         state :
+         [
+           ...state,
+           exerciseDay(null, action) //resuse the above or could use the usual, action.payload but resusing is better
+         ].sort((a, b) => new Date(b.date) - new Date(a.date))
+
+    case C.REMOVE_DAY :
+
+      return state.filter(exerciseDay => exerciseDay.date !== action.payload)
+
+    default:
+      return state
+  }
+
+}
