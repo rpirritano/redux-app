@@ -42,3 +42,23 @@ export const changeSuggestions = suggestions =>
 export const clearSuggestions = () =>
   ({  type: C.CLEAR_SUGGESTIONS
   })
+
+  //thunk - they return a function
+  //can have as many dispatches or delay as want
+  //can chech existing state before dispath
+  //THUNKS allow to write robust action creators that are asynchronous
+  export const randomGoals = () => (dispatch, getState) => {
+
+    if (!getState().exerciseNames.fetching) {
+//if fetching exercise names, then wont dispatch
+      dispatch({
+    		type: C.FETCH_EXERCISE_NAMES
+    	})
+
+      setTimeout(() => {
+        dispatch({
+          type: C.CANCEL_FETCHING
+        })
+      }, 1500)
+    }
+  }
