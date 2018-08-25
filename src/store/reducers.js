@@ -99,8 +99,8 @@ export const suggestions = (state=[], action) => {
 	}
 }
 /*
-//need to combine the children reducers of exerciseNames to use in the singleReducer
-const exerciseNames = combineReducers({
+//need to combine the children reducers of routineNames to use in the singleReducer
+const routineNames = combineReducers({
   fetching,
   suggestions
 })
@@ -110,7 +110,7 @@ const singleReducer = combineReducers({
   allExerciseDays,
   goal,
   errors,
-  exerciseNames
+  routineNames
 })
 
 export default singleReducer
@@ -121,7 +121,7 @@ export default combineReducers({
   allExerciseDays,
   goal,
   errors,
-  exerciseNames: combineReducers({
+  routineNames: combineReducers({
     fetching,
     suggestions
   })

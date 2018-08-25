@@ -21,7 +21,7 @@
 	],
 	"goal": 10,
 	"errors": [],
-	"exerciseNames": {
+	"routineNames": {
 		"fetching": false,
 		"suggestions": ["Cardio Power", "Cardio Recovery", "Cardio Abs", "Core Cardio"]
 	}

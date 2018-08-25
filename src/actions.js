@@ -1,4 +1,5 @@
 import C from './constants'
+import fetch from 'isomorphic-fetch'
 
 export function addDay(routine, date, weights=false, cardio=false){
 
@@ -49,10 +50,10 @@ export const clearSuggestions = () =>
   //THUNKS allow to write robust action creators that are asynchronous
   export const randomGoals = () => (dispatch, getState) => {
 
-    if (!getState().exerciseNames.fetching) {
+    if (!getState().routineNames.fetching) {
 //if fetching exercise names, then wont dispatch
       dispatch({
-    		type: C.FETCH_EXERCISE_NAMES
+    		type: C.FETCH_ROUTINE_NAMES
     	})
 
       setTimeout(() => {
@@ -62,3 +63,30 @@ export const clearSuggestions = () =>
       }, 1500)
     }
   }
+
+
+//thunk for clearSuggestions
+export const suggestRoutineNames = value => (dispatch) => {
+
+  dispatch({
+    type: C.FETCH_ROUTINE_NAMES
+  })
+
+  fetch('http://localhost:3333/routines/' + value)
+    .then(response => response.json())
+    .then(suggestions => {
+
+      dispatch({
+        type: C.CHANGE_SUGGESTIONS,
+        payload: suggestions
+      })
+    })
+    .catch(error => {
+      dispatch(
+        addError(error.message)
+      )
+      dispatch({
+        type: C.CANCEL_FETCHING
+      })
+    })
+}

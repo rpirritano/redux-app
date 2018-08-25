@@ -13,13 +13,13 @@ const consoleMessages = (store) => (next) => (action) => {
 
   result = next(action) //where action gets dispatched
   //code after will give info now about current getState
-  let { allExerciseDays, goal, errors, exerciseNames } = store.getState()
+  let { allExerciseDays, goal, errors, routineNames } = store.getState()
 
   console.log(`
     exercise days: ${allExerciseDays.length}
     goal: ${goal}
-    fetching: ${exerciseNames.fetching}
-    suggestions: ${exerciseNames.suggestions}
+    fetching: ${routineNames.fetching}
+    suggestions: ${routineNames.suggestions}
     errors: ${errors.length}
   `)
 
