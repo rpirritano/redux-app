@@ -1,45 +1,21 @@
-import C from './constants'
+//Action creators are functions that create and return actions.
+//They allow us to encapsulate the logic of our applications using functions, not objects
+
 import storeFactory from './store'
+import { addDay, removeDay, setGoal } from './actions'
 
-const initialState = (localStorage['redux-store']) ?
-	JSON.parse(localStorage['redux-store']) :
-	{}
+const store = storeFactory()
 
-const saveState = () => {
-	const state = JSON.stringify(store.getState())
-  localStorage['redux-store'] = state
-}
+const state = store.getState()
 
-const store = storeFactory(initialState)
+store.dispatch(
+	addDay("P90X", "2018-09-01")
+)
 
-store.subscribe(saveState)
+store.dispatch(
+	removeDay("2018-09-01")
+)
 
-store.dispatch({
-	type: C.ADD_DAY,
-	payload: {
-		"routine": "Insanity",
-		"date": "2018-08-21",
-		"weights": false,
-		"cardio": true
-	}
-})
-
-store.dispatch({
-	type: C.ADD_DAY,
-	payload: {
-		"routine": "P90X",
-		"date": "2018-08-22",
-		"weights": true,
-		"cardio": false
-	}
-})
-
-store.dispatch({
-	type: C.ADD_DAY,
-	payload: {
-		"routine": "P90X",
-		"date": "2018-08-23",
-		"weights": true,
-		"cardio": false
-	}
-})
+store.dispatch(
+	setGoal(55)
+)
